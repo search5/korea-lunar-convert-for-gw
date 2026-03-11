@@ -1,0 +1,15 @@
+title: 음력 변환기
+description: Google Calendar 부가기능
+lang: ko
+baseurl: ""
+url: ""
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

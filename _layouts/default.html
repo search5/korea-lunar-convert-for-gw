@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} — 음력 변환기</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --ink-soft: #3a3a5c;
+      --ink-muted: #7a7a9a;
+      --accent: #6a4fcf;
+      --moon-pale: #ede8fa;
+      --paper: #f7f5f0;
+      --rule: #d4cfe8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 72px 40px 120px; }
+    nav {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 56px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 13px;
+    }
+    nav a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    nav a:hover, nav a.active { color: var(--accent); }
+    nav .home { font-weight: 500; color: var(--ink); margin-right: auto; }
+
+    /* 마크다운 콘텐츠 스타일 */
+    .content h1 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 32px;
+      font-weight: 300;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .content > p:first-of-type {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .content h2 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin: 44px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .content h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 28px 0 10px;
+      color: var(--ink);
+    }
+    .content p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+    }
+    .content ul, .content ol {
+      margin: 12px 0 14px 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    .content ul li, .content ol li {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--ink-soft);
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .content ul li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+    .content ol { counter-reset: item; }
+    .content ol li::before {
+      content: counter(item) ".";
+      counter-increment: item;
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .content code {
+      font-family: monospace;
+      font-size: 13px;
+      background: var(--moon-pale);
+      padding: 1px 6px;
+      border-radius: 4px;
+      color: var(--accent);
+    }
+    .content blockquote {
+      background: var(--moon-pale);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .content blockquote p { margin: 0; font-size: 14px; }
+    .content hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 44px 0;
+    }
+    .content strong { font-weight: 600; color: var(--ink); }
+    .content a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .content a:hover { border-color: var(--accent); }
+
+    footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-size: 12px;
+      color: var(--ink-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    @media (max-width: 600px) {
+      .wrap { padding: 40px 20px 80px; }
+      .content h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a href="{{ '/' | relative_url }}" class="home">🌙 음력 변환기</a>
+      <a href="{{ '/support' | relative_url }}" {% if page.url == '/support/' or page.url == '/support.html' %}class="active"{% endif %}>지원</a>
+      <a href="{{ '/privacy' | relative_url }}" {% if page.url == '/privacy/' or page.url == '/privacy.html' %}class="active"{% endif %}>개인정보처리방침</a>
+      <a href="{{ '/terms' | relative_url }}" {% if page.url == '/terms/' or page.url == '/terms.html' %}class="active"{% endif %}>이용약관</a>
+    </nav>
+    <div class="content">
+      {{ content }}
+    </div>
+    <footer>
+      <span>음력 변환기 · Google Calendar 부가기능</span>
+      <span>© 2026</span>
+    </footer>
+  </div>
+</body>
+</html>
